@@ -18,18 +18,23 @@
  */
 @interface TKParseUtils : NSObject
 
-/** Given a sentence and parse the sentence into funnyWord format
- @param - sentence - The sentence to parse
+/** Given a sentence and parse the sentence into funnyWord format.
  
- @return - The parsed sentence in funnyWord format. Returns nil if an error occurred.
+ TODO: This could be improved by using NSError as a parameter to be filled out in case of error.
+ 
+ @param sentence: The sentence to parse
+ 
+ @return The parsed sentence in funnyWord format. Returns nil if an error occurred.
  */
 + (NSString *)funnySentenceParser:(NSString *)sentence;
 
-/* Take an input string, presumed to be a single word and return the number of distinct characters between the first and last letter while keeping the first and last letter in place. The count is case insenstivie. White space is removed from all input.
+/** Take an input string, presumed to be a single word and return the number of distinct characters between the first and last letter while keeping the first and last letter in place. The count is case insenstivie. White space is removed from all input.
  
- @param - input - Input string, must be non-nil and >= 3 characters
+   TODO: This could be improved by using NSError as a parameter to be filled out in case of error.
  
- @return - the result as a string, or nil of the parsing failed.
+ @param sentence: Input string, must be non-nil and >= 3 characters
+ 
+ @return The result as an NSString object, or nil of the parsing failed.
  */
 + (NSString *)funnyWordParser:(NSString *)word;
 

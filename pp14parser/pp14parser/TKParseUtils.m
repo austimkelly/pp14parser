@@ -18,13 +18,14 @@
     if (sentence != nil){
     
         // We need to tokenize on the numbers, but also replace them after the funny conversion
-        NSCharacterSet *numberSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+        //NSCharacterSet *numericSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+        NSCharacterSet *nonLetterSet = [[NSCharacterSet letterCharacterSet] invertedSet]; // All non-alpha characters
         
         NSArray *wordBoundaries = [TKParseUtils getSentenceWordBoundaries:sentence];
         
         NSString *newString =
-        [[sentence componentsSeparatedByCharactersInSet:numberSet]
-         componentsJoinedByString:@" "]; // Removes the numbers and replaces with spaces
+        [[sentence componentsSeparatedByCharactersInSet:nonLetterSet]
+         componentsJoinedByString:@" "]; // Removes the numbers/non-alpha chars and replaces with spaces.
         
         NSArray *words = [newString componentsSeparatedByString:@" "];
         
@@ -101,6 +102,18 @@
     
 }
 
+
+/**
+ Takes a sentence and breaks up the word boundaries on non-alpha characters.
+ For example, "My&^dog   has___fleas" will tokenize {"&^", "   ", "___}.
+ 
+ TODO: Consider for prefix/suffix delimiters, currently presumes they are stripped.
+ 
+ @param sentence: The input sentence you want to tokenize.
+ 
+ @result An array of NSString objects that are alpha only.
+ 
+ */
 + (NSArray *)getSentenceWordBoundaries:(NSString *)sentence{
     
     NSMutableArray *boundaries = [NSMutableArray array];

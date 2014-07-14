@@ -31,8 +31,22 @@
 - (void)testParser
 {
     
-    NSArray *testCases = [NSArray arrayWithObjects:@"Smooth", @"Smooth Smooth  Smooth", @"Zzzzzzzzz", @"Whole Lotta Love", @"Cow11Jumped233Over3444The4555Moon", nil];
-    NSArray *expectedResults = [NSArray arrayWithObjects:@"S3h", @"S3h S3h  S3h", @"Z1z", @"W3e L2a L2e", @"C1w11J4d233O2r3444T1e4555M1n",  nil];
+    NSArray *testCases = [NSArray arrayWithObjects:@"Smooth",
+                          @"Smooth Smooth  Smooth",
+                          @"Zzzzzzzzz", @"Whole Lotta Love",
+                          @"Cow11Jumped233Over3444The4555Moon",
+                          @"Unicode!@#$%^&*(Test",
+                          @"AaAa_Bbbb",
+                          nil];
+    
+    NSArray *expectedResults = [NSArray arrayWithObjects:@"S3h",
+                                @"S3h S3h  S3h",
+                                @"Z1z",
+                                @"W3e L2a L2e",
+                                @"C1w11J4d233O2r3444T1e4555M1n",
+                                @"U5e!@#$%^&*(T2t",
+                                @"A1a_B1b",
+                                nil];
     
     int i = 0;
     for (NSString *testCase in testCases){
